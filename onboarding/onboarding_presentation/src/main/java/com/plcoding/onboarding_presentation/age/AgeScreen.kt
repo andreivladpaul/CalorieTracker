@@ -18,6 +18,13 @@ import com.plcoding.onboarding_presentation.components.ActionButton
 import com.plcoding.onboarding_presentation.components.UnitTextField
 import kotlinx.coroutines.flow.collect
 
+/**
+ * A composable screen that allows the user to enter their age.
+ *
+ * @param scaffoldState The [ScaffoldState] used to show snackbars.
+ * @param onNextClick A callback that is invoked when the user clicks the 'Next' button.
+ * @param viewModel The view model for this screen, used to handle the screen's state and events.
+ */
 @Composable
 fun AgeScreen(
     scaffoldState: ScaffoldState,

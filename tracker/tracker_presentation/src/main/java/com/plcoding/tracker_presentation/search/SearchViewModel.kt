@@ -16,18 +16,39 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * The ViewModel for the search screen.
+ * It handles the state and logic for searching for food, tracking food, and managing the UI state.
+ *
+ * @param trackerUseCases A wrapper class containing all the use cases for the tracker feature.
+ * @param filterOutDigits A use case to filter out non-digit characters from a string.
+ */
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val trackerUseCases: TrackerUseCases,
     private val filterOutDigits: FilterOutDigits
 ): ViewModel() {
 
+    /**
+     * The current state of the search screen.
+     * It is a mutable state that can be observed by the UI.
+     */
     var state by mutableStateOf(SearchState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
+    /**
+     * A flow of [UiEvent]s that can be collected by the UI to react to one-time events,
+     * such as showing a snackbar or navigating up.
+     */
     val uiEvent = _uiEvent.receiveAsFlow()
 
+    /**
+     * Called when an event is triggered from the UI.
+     * It handles the different types of [SearchEvent]s and updates the state accordingly.
+     *
+     * @param event The [SearchEvent] that was triggered.
+     */
     fun onEvent(event: SearchEvent) {
         when(event) {
             is SearchEvent.OnQueryChange -> {
@@ -65,6 +86,11 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Executes the food search based on the current query in the state.
+     * Updates the UI state to show a loading indicator, then populates the
+     * results on success or shows an error snackbar on failure.
+     */
     private fun executeSearch() {
         viewModelScope.launch {
             state = state.copy(
@@ -93,6 +119,13 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Tracks a food item when the user confirms their selection.
+     * It finds the corresponding UI state, validates the amount,
+     * and then calls the appropriate use case to save the food.
+     *
+     * @param event The [SearchEvent.OnTrackFoodClick] event containing the food details.
+     */
     private fun trackFood(event: SearchEvent.OnTrackFoodClick) {
         viewModelScope.launch {
             val uiState = state.trackableFood.find { it.food == event.food }

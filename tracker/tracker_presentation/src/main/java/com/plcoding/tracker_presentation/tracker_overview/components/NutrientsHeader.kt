@@ -2,25 +2,33 @@ package com.plcoding.tracker_presentation.tracker_overview.components
 
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.plcoding.core_ui.LocalSpacing
-import com.plcoding.tracker_presentation.R
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.sp
 import com.plcoding.core_ui.CarbColor
 import com.plcoding.core_ui.FatColor
+import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.core_ui.ProteinColor
+import com.plcoding.tracker_presentation.R
 import com.plcoding.tracker_presentation.components.UnitDisplay
 import com.plcoding.tracker_presentation.tracker_overview.TrackerOverviewState
 
+/**
+ * A composable that serves as the header for the tracker overview screen.
+ * It displays the total calories consumed, the daily calorie goal, a macronutrient
+ * progress bar, and detailed circular progress bars for each macronutrient.
+ *
+ * @param state The current state of the tracker overview screen, containing all necessary nutrient data.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @Composable
 fun NutrientsHeader(
     state: TrackerOverviewState,

@@ -12,6 +12,11 @@ import com.plcoding.core.R
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.onboarding_presentation.components.ActionButton
 
+/**
+ * A composable screen that displays a welcome message to the user.
+ *
+ * @param onNextClick A callback that is invoked when the user clicks the 'Next' button.
+ */
 @Composable
 fun WelcomeScreen(
     onNextClick: () -> Unit

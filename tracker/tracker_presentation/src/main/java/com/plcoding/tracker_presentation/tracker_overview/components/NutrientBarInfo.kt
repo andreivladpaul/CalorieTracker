@@ -24,6 +24,19 @@ import androidx.compose.ui.unit.dp
 import com.plcoding.tracker_presentation.R
 import com.plcoding.tracker_presentation.components.UnitDisplay
 
+/**
+ * A composable that displays a circular progress bar for a single nutrient,
+ * showing the consumed amount versus the goal. It also displays the nutrient's name
+ * and the consumed amount in grams. The color of the bar and text changes if the
+ * goal is exceeded.
+ *
+ * @param value The current consumed amount of the nutrient.
+ * @param goal The daily goal for the nutrient.
+ * @param name The name of the nutrient (e.g., "Carbs").
+ * @param color The color of the progress bar when the consumed value is within the goal.
+ * @param modifier A [Modifier] to be applied to the component.
+ * @param strokeWidth The width of the circular progress bar's stroke.
+ */
 @Composable
 fun NutrientBarInfo(
     value: Int,

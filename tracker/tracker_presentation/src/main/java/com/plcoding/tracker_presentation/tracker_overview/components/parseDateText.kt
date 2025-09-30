@@ -6,6 +6,14 @@ import com.plcoding.tracker_presentation.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * A composable function that parses a [LocalDate] and returns a human-readable string representation.
+ * It displays "Today", "Yesterday", or "Tomorrow" for the respective dates,
+ * otherwise it formats the date as "dd MMMM" (e.g., "01 January").
+ *
+ * @param date The [LocalDate] to be parsed.
+ * @return A string representing the parsed date.
+ */
 @Composable
 fun parseDateText(date: LocalDate): String {
     val today = LocalDate.now()

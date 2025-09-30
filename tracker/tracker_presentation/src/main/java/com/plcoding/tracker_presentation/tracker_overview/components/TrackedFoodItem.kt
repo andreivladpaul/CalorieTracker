@@ -27,6 +27,15 @@ import com.plcoding.tracker_domain.model.TrackedFood
 import com.plcoding.tracker_presentation.R
 import com.plcoding.tracker_presentation.components.NutrientInfo
 
+/**
+ * A composable that displays a single tracked food item in a list.
+ * It shows the food's image, name, amount, and nutrient information.
+ * It also provides a button to delete the item.
+ *
+ * @param trackedFood The [TrackedFood] object to be displayed.
+ * @param onDeleteClick A callback that is invoked when the user clicks the delete icon.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @ExperimentalCoilApi
 @Composable
 fun TrackedFoodItem(

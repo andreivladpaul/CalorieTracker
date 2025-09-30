@@ -5,6 +5,12 @@ import com.plcoding.tracker_domain.model.MealType
 import com.plcoding.tracker_domain.model.TrackedFood
 import java.time.LocalDate
 
+/**
+ * Converts a [TrackedFoodEntity] from the database to a [TrackedFood] domain model.
+ *
+ * @receiver The [TrackedFoodEntity] to be converted.
+ * @return The corresponding [TrackedFood] object.
+ */
 fun TrackedFoodEntity.toTrackedFood(): TrackedFood {
     return TrackedFood(
         name = name,
@@ -20,6 +26,12 @@ fun TrackedFoodEntity.toTrackedFood(): TrackedFood {
     )
 }
 
+/**
+ * Converts a [TrackedFood] domain model to a [TrackedFoodEntity] for database storage.
+ *
+ * @receiver The [TrackedFood] to be converted.
+ * @return The corresponding [TrackedFoodEntity] object.
+ */
 fun TrackedFood.toTrackedFoodEntity(): TrackedFoodEntity {
     return TrackedFoodEntity(
         name = name,

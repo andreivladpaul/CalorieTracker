@@ -9,10 +9,22 @@ import com.plcoding.tracker_domain.model.MealType
 import com.plcoding.tracker_domain.model.TrackedFood
 import kotlin.math.roundToInt
 
+/**
+ * A use case for calculating the nutrient totals for a list of tracked foods,
+ * as well as the user's daily nutrient goals.
+ *
+ * @param preferences The [Preferences] repository to load user information from.
+ */
 class CalculateMealNutrients(
     private val preferences: Preferences
 ) {
 
+    /**
+     * Calculates the nutrient totals for the given list of tracked foods and the user's daily goals.
+     *
+     * @param trackedFoods The list of [TrackedFood] items for a specific day.
+     * @return A [Result] object containing the calculated nutrient information and goals.
+     */
     operator fun invoke(trackedFoods: List<TrackedFood>): Result {
         val allNutrients = trackedFoods
             .groupBy { it.mealType }
@@ -78,6 +90,15 @@ class CalculateMealNutrients(
         return (bmr(userInfo) * activityFactor + caloryExtra).roundToInt()
     }
 
+    /**
+     * Represents the nutrient totals for a specific meal.
+     *
+     * @property carbs The total carbohydrates for the meal.
+     * @property protein The total protein for the meal.
+     * @property fat The total fat for the meal.
+     * @property calories The total calories for the meal.
+     * @property mealType The type of the meal.
+     */
     data class MealNutrients(
         val carbs: Int,
         val protein: Int,
@@ -86,6 +107,19 @@ class CalculateMealNutrients(
         val mealType: MealType
     )
 
+    /**
+     * Represents the result of the nutrient calculation, including goals and totals.
+     *
+     * @property carbsGoal The daily goal for carbohydrates in grams.
+     * @property proteinGoal The daily goal for protein in grams.
+     * @property fatGoal The daily goal for fat in grams.
+     * @property caloriesGoal The daily goal for calories.
+     * @property totalCarbs The total consumed carbohydrates for the day in grams.
+     * @property totalProtein The total consumed protein for the day in grams.
+     * @property totalFat The total consumed fat for the day in grams.
+     * @property totalCalories The total consumed calories for the day.
+     * @property mealNutrients A map of [MealType] to [MealNutrients] containing the nutrient totals for each meal.
+     */
     data class Result(
         val carbsGoal: Int,
         val proteinGoal: Int,

@@ -1,6 +1,11 @@
 package com.plcoding.calorytracker.navigation
 
+/**
+ * A utility object that holds the navigation routes for the application.
+ * These routes are used by the Jetpack Compose Navigation component to identify screens.
+ */
 object Route {
+    // Onboarding routes
     const val WELCOME = "welcome"
     const val AGE = "age"
     const val GENDER = "gender"
@@ -10,6 +15,7 @@ object Route {
     const val ACTIVITY = "activity"
     const val GOAL = "goal"
 
+    // Tracker routes
     const val TRACKER_OVERVIEW = "tracker_overview"
     const val SEARCH = "search"
 }

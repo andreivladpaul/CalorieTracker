@@ -3,6 +3,7 @@ package com.plcoding.tracker_presentation.tracker_overview.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -15,21 +16,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import coil.compose.rememberImagePainter
+import androidx.compose.ui.unit.sp
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.tracker_presentation.R
-import com.plcoding.tracker_presentation.tracker_overview.Meal
-import androidx.compose.foundation.layout.*
-import androidx.compose.ui.unit.sp
 import com.plcoding.tracker_presentation.components.NutrientInfo
 import com.plcoding.tracker_presentation.components.UnitDisplay
+import com.plcoding.tracker_presentation.tracker_overview.Meal
 
+/**
+ * A composable that displays a meal which can be expanded or collapsed to show its content.
+ * The header of the meal shows its name, icon, and nutrient summary.
+ *
+ * @param meal The [Meal] object containing the data to be displayed.
+ * @param onToggleClick A callback that is invoked when the user clicks the meal header to toggle its expanded state.
+ * @param content The composable content to be displayed when the meal is expanded.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @Composable
 fun ExpandableMeal(
     meal: Meal,
     onToggleClick: () -> Unit,
     content: @Composable () -> Unit,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current

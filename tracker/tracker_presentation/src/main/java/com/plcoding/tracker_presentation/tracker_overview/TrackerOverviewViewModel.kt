@@ -17,16 +17,31 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * The ViewModel for the tracker overview screen.
+ * It handles the state and logic for displaying daily nutrient summaries,
+ * navigating between days, and managing the list of tracked foods.
+ *
+ * @param preferences The [Preferences] repository to save app settings, like whether to show onboarding.
+ * @param trackerUseCases A wrapper class containing all the use cases for the tracker feature.
+ */
 @HiltViewModel
 class TrackerOverviewViewModel @Inject constructor(
     preferences: Preferences,
     private val trackerUseCases: TrackerUseCases,
 ): ViewModel() {
 
+    /**
+     * The current state of the tracker overview screen.
+     * It is a mutable state that can be observed by the UI.
+     */
     var state by mutableStateOf(TrackerOverviewState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
+    /**
+     * A flow of [UiEvent]s that can be collected by the UI to react to one-time events.
+     */
     val uiEvent = _uiEvent.receiveAsFlow()
 
     private var getFoodsForDateJob: Job? = null
@@ -36,6 +51,12 @@ class TrackerOverviewViewModel @Inject constructor(
         preferences.saveShouldShowOnboarding(false)
     }
 
+    /**
+     * Called when an event is triggered from the UI.
+     * It handles the different types of [TrackerOverviewEvent]s and updates the state accordingly.
+     *
+     * @param event The [TrackerOverviewEvent] that was triggered.
+     */
     fun onEvent(event: TrackerOverviewEvent) {
         when(event) {
             is TrackerOverviewEvent.OnDeleteTrackedFoodClick -> {
@@ -68,6 +89,11 @@ class TrackerOverviewViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Refreshes the food and nutrient data for the currently selected date.
+     * It cancels any previous data fetching job, gets the latest food items for the date,
+     * recalculates the nutrient totals, and updates the UI state.
+     */
     private fun refreshFoods() {
         getFoodsForDateJob?.cancel()
         getFoodsForDateJob = trackerUseCases

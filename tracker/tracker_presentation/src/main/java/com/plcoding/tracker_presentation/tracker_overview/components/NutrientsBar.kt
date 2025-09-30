@@ -13,6 +13,19 @@ import com.plcoding.core_ui.CarbColor
 import com.plcoding.core_ui.FatColor
 import com.plcoding.core_ui.ProteinColor
 
+/**
+ * A composable that displays a horizontal bar representing the breakdown of macronutrients
+ * (carbohydrates, protein, and fat) relative to the daily calorie goal. The bar is
+ * color-coded for each nutrient. If the total calories exceed the goal, the entire bar
+ * turns to an error color.
+ *
+ * @param carbs The total grams of consumed carbohydrates.
+ * @param protein The total grams of consumed protein.
+ * @param fat The total grams of consumed fat.
+ * @param calories The total consumed calories.
+ * @param calorieGoal The daily calorie goal.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @Composable
 fun NutrientsBar(
     carbs: Int,
