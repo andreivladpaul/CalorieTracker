@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
@@ -13,9 +14,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
+import com.plcoding.calorytracker.navigation.Route
 import com.plcoding.calorytracker.ui.theme.CaloryTrackerTheme
 import com.plcoding.core.domain.preferences.Preferences
-import com.plcoding.calorytracker.navigation.Route
 import com.plcoding.onboarding_presentation.activity.ActivityScreen
 import com.plcoding.onboarding_presentation.age.AgeScreen
 import com.plcoding.onboarding_presentation.gender.GenderScreen
@@ -29,6 +30,11 @@ import com.plcoding.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/**
+ * The main activity of the application, serving as the entry point for the UI.
+ * It hosts the Jetpack Compose navigation graph and sets up the overall theme and layout.
+ * This activity is annotated with [AndroidEntryPoint] to enable Dagger Hilt dependency injection.
+ */
 @ExperimentalComposeUiApi
 @ExperimentalCoilApi
 @AndroidEntryPoint
@@ -37,6 +43,15 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var preferences: Preferences
 
+    /**
+     * Called when the activity is first created. This is where you should do all of your normal
+     * static set up: create views, bind data to lists, etc. This method also provides you with
+     * a Bundle containing the activity's previously frozen state, if there was one.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being
+     * shut down then this Bundle contains the data it most recently supplied in
+     * onSaveInstanceState(Bundle). Note: Otherwise it is null.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val shouldShowOnboarding = preferences.loadShouldShowOnboarding()

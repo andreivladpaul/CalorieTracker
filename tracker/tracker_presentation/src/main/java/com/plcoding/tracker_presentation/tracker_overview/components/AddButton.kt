@@ -19,6 +19,15 @@ import androidx.compose.ui.unit.dp
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.tracker_presentation.R
 
+/**
+ * A composable button with a plus icon and text, used for adding items.
+ * It has a rounded border and is clickable.
+ *
+ * @param text The text to display on the button.
+ * @param onClick The callback to be invoked when the button is clicked.
+ * @param modifier A [Modifier] to be applied to the button.
+ * @param color The color of the button's text, icon, and border.
+ */
 @Composable
 fun AddButton(
     text: String,

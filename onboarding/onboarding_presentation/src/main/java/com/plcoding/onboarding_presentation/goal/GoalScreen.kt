@@ -19,6 +19,12 @@ import com.plcoding.onboarding_presentation.components.ActionButton
 import com.plcoding.onboarding_presentation.components.SelectableButton
 import kotlinx.coroutines.flow.collect
 
+/**
+ * A composable screen that allows the user to select their weight goal.
+ *
+ * @param onNextClick A callback that is invoked when the user clicks the 'Next' button.
+ * @param viewModel The view model for this screen, used to handle the screen's state and events.
+ */
 @Composable
 fun GoalScreen(
     onNextClick: () -> Unit,

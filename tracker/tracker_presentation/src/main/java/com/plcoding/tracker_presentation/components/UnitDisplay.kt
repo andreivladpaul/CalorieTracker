@@ -13,6 +13,17 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.plcoding.core_ui.LocalSpacing
 
+/**
+ * A composable that displays a numerical amount followed by a unit, aligned by their baseline.
+ *
+ * @param amount The numerical amount to display.
+ * @param unit The unit string to display.
+ * @param modifier A [Modifier] to be applied to the component.
+ * @param amountTextSize The font size for the amount text.
+ * @param amountColor The color of the amount text.
+ * @param unitTextSize The font size for the unit text.
+ * @param unitColor The color of the unit text.
+ */
 @Composable
 fun UnitDisplay(
     amount: Int,

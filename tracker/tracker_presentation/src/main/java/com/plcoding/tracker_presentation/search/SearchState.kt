@@ -1,7 +1,13 @@
 package com.plcoding.tracker_presentation.search
 
-import com.plcoding.tracker_domain.model.TrackableFood
-
+/**
+ * Represents the state of the search screen.
+ *
+ * @property query The current search query entered by the user.
+ * @property isHintVisible Whether the search query hint should be visible.
+ * @property isSearching Whether a search is currently in progress.
+ * @property trackableFood The list of food items that match the search query, wrapped in [TrackableFoodUiState].
+ */
 data class SearchState(
     val query: String = "",
     val isHintVisible: Boolean = false,

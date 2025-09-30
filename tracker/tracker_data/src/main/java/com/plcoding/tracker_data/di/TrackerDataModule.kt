@@ -17,10 +17,20 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
+/**
+ * A Dagger Hilt module that provides dependencies for the tracker data layer.
+ * This includes the database, network API, and repository implementations.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object TrackerDataModule {
 
+    /**
+     * Provides a singleton instance of [OkHttpClient] with a logging interceptor.
+     * The logging interceptor is useful for debugging network requests.
+     *
+     * @return An instance of [OkHttpClient].
+     */
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -33,6 +43,12 @@ object TrackerDataModule {
             .build()
     }
 
+    /**
+     * Provides a singleton instance of [OpenFoodApi] for making network requests to the Open Food Facts API.
+     *
+     * @param client The [OkHttpClient] to be used by Retrofit.
+     * @return An instance of [OpenFoodApi].
+     */
     @Provides
     @Singleton
     fun provideOpenFoodApi(client: OkHttpClient): OpenFoodApi {
@@ -44,6 +60,12 @@ object TrackerDataModule {
             .create()
     }
 
+    /**
+     * Provides a singleton instance of [TrackerDatabase] for local data storage.
+     *
+     * @param app The application context.
+     * @return An instance of [TrackerDatabase].
+     */
     @Provides
     @Singleton
     fun provideTrackerDatabase(app: Application): TrackerDatabase {
@@ -54,6 +76,13 @@ object TrackerDataModule {
         ).build()
     }
 
+    /**
+     * Provides a singleton instance of the [TrackerRepository] implementation.
+     *
+     * @param api The [OpenFoodApi] for remote data.
+     * @param db The [TrackerDatabase] for local data.
+     * @return An implementation of [TrackerRepository].
+     */
     @Provides
     @Singleton
     fun provideTrackerRepository(

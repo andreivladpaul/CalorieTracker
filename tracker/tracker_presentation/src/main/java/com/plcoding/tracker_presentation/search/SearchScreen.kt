@@ -27,6 +27,17 @@ import com.plcoding.tracker_presentation.search.components.TrackableFoodItem
 import kotlinx.coroutines.flow.collect
 import java.time.LocalDate
 
+/**
+ * A composable screen that allows the user to search for food items and track them for a specific meal.
+ *
+ * @param scaffoldState The [ScaffoldState] used to show snackbars.
+ * @param mealName The name of the meal being tracked (e.g., "Breakfast").
+ * @param dayOfMonth The day of the month for which the food is being tracked.
+ * @param month The month for which the food is being tracked.
+ * @param year The year for which the food is being tracked.
+ * @param onNavigateUp A callback to navigate back to the previous screen.
+ * @param viewModel The view model for this screen, used to handle the screen's state and events.
+ */
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable

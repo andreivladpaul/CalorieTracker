@@ -26,11 +26,22 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.tracker_presentation.R
 
+/**
+ * A custom composable for a search text field. It includes a hint, a search icon,
+ * and handles focus changes to show/hide the hint.
+ *
+ * @param text The current text in the search field.
+ * @param onValueChange A callback that is invoked when the text in the search field changes.
+ * @param onSearch A callback that is invoked when the user triggers a search action (e.g., clicks the search icon or presses the search key on the keyboard).
+ * @param modifier A [Modifier] to be applied to the component.
+ * @param hint The hint text to be displayed when the search field is empty.
+ * @param shouldShowHint A boolean indicating whether the hint should be shown.
+ * @param onFocusChanged A callback that is invoked when the focus state of the search field changes.
+ */
 @Composable
 fun SearchTextField(
     text: String,

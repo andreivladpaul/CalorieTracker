@@ -15,6 +15,14 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * A ViewModel for the nutrient goal screen.
+ * It handles the state and logic for setting the user's nutrient goals.
+ *
+ * @param preferences The [Preferences] repository to save the nutrient goals.
+ * @param filterOutDigits The use case to filter out non-digit characters from the input.
+ * @param validateNutrients The use case to validate the nutrient ratios.
+ */
 @HiltViewModel
 class NutrientGoalViewModel @Inject constructor(
     private val preferences: Preferences,
@@ -22,12 +30,26 @@ class NutrientGoalViewModel @Inject constructor(
     private val validateNutrients: ValidateNutrients
 ): ViewModel() {
 
+    /**
+     * The current state of the nutrient goal screen.
+     * It is a mutable state that can be observed by the UI.
+     */
     var state by mutableStateOf(NutrientGoalState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
+    /**
+     * A flow of [UiEvent]s that can be collected by the UI to react to one-time events,
+     * such as showing a snackbar or navigating to the next screen.
+     */
     val uiEvent = _uiEvent.receiveAsFlow()
 
+    /**
+     * Called when an event is triggered from the UI.
+     * It handles the different types of [NutrientGoalEvent]s and updates the state accordingly.
+     *
+     * @param event The [NutrientGoalEvent] that was triggered.
+     */
     fun onEvent(event: NutrientGoalEvent) {
         when(event) {
             is NutrientGoalEvent.OnCarbRatioEnter -> {

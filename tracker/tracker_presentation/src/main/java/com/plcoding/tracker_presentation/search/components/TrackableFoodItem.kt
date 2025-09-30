@@ -5,29 +5,23 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
-import com.plcoding.core_ui.LocalSpacing
-import com.plcoding.tracker_presentation.R
-import com.plcoding.tracker_presentation.search.TrackableFoodUiState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.res.stringResource
@@ -36,9 +30,26 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import com.plcoding.core_ui.LocalSpacing
+import com.plcoding.tracker_presentation.R
 import com.plcoding.tracker_presentation.components.NutrientInfo
+import com.plcoding.tracker_presentation.search.TrackableFoodUiState
 
+/**
+ * A composable that displays a single trackable food item from a search result.
+ * It shows the food's image, name, and nutrient information. It can be expanded
+ * to enter an amount and track the food.
+ *
+ * @param trackableFoodUiState The UI state for the trackable food item.
+ * @param onClick A callback that is invoked when the item is clicked, typically to expand or collapse it.
+ * @param onAmountChange A callback that is invoked when the user changes the amount of the food.
+ * @param onTrack A callback that is invoked when the user clicks the track button.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @ExperimentalCoilApi
 @Composable
 fun TrackableFoodItem(

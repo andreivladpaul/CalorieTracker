@@ -1,4 +1,4 @@
-package com.plcoding.calorytrackerprep.ui.theme
+package com.plcoding.calorytracker.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,6 +6,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+/**
+ * Defines the typography for the application's Material Theme.
+ * This includes styles for headlines, body text, buttons, etc.
+ */
 val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily.Default,

@@ -16,6 +16,15 @@ import androidx.compose.ui.res.stringResource
 import com.plcoding.tracker_presentation.R
 import java.time.LocalDate
 
+/**
+ * A composable that allows the user to select a day.
+ * It displays the currently selected date and provides buttons to navigate to the previous and next days.
+ *
+ * @param date The currently selected date.
+ * @param onPreviousDayClick A callback that is invoked when the user clicks the "previous day" button.
+ * @param onNextDayClick A callback that is invoked when the user clicks the "next day" button.
+ * @param modifier A [Modifier] to be applied to the component.
+ */
 @Composable
 fun DaySelector(
     date: LocalDate,
